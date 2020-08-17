@@ -65,5 +65,21 @@ namespace WebApi.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(GetMemberQueryResult), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var result = await _memberService.GetMemberQueryHandler(id);
+            return Ok(result);
+        }
+
+        [HttpPost("delete")]
+        [ProducesResponseType(typeof(DeleteMemberQueryResult), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Delete(DeleteMemberCommand command)
+        {
+            var result = await _memberService.DeleteMemberQueryHandler(command);
+            return Ok(result);
+        }
     }
 }

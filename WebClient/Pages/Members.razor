@@ -12,7 +12,7 @@
         <div class="col-8 p-0">
             @if(showCreator) {
                 <div class="col-sm-12 col-md-10 offset-md-1 pt-5">
-                    <FamilyMemberCreator onAddCallback="@onMemberAdd" />
+                    <FamilyMemberCreator member="@member" onAddCallback="@onMemberAdd" onUpdateCallback="@onMemberUpdate" onDeleteCallback="@onMemberDelete" />
                 </div>
             }
         </div>

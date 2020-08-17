@@ -29,9 +29,19 @@ namespace WebClient.Services
             return await _httpClient.GetJsonAsync<GetAllMembersQueryResult>("members");
         }
 
+        public async Task<GetMemberQueryResult> GetById(Guid id)
+        {
+            return await _httpClient.GetJsonAsync<GetMemberQueryResult>($"members/{id}");
+        }
+
         public async Task<UpdateMemberCommandResult> Update(UpdateMemberCommand command)
         {
             return await _httpClient.PutJsonAsync<UpdateMemberCommandResult>($"members/{command.Id}", command);
+        }
+
+        public async Task<DeleteMemberQueryResult> Delete(DeleteMemberCommand command)
+        {
+            return await _httpClient.PostJsonAsync<DeleteMemberQueryResult>($"members/delete", command);
         }
     }
 }

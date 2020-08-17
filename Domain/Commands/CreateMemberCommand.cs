@@ -11,5 +11,6 @@ namespace Domain.Commands
         public string Email { get; set; }
         public string Roles { get; set; }
         public string Avatar { get; set; }
+        public Guid? Id { get; set; }
     }
 }

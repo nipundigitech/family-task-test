@@ -26,7 +26,7 @@
             }
             @if(showCreator) {
                 <div class="col-10 offset-1 pt-5">
-                    <FamilyMemberCreator onAddCallback="@onMemberAdd" />
+                    <FamilyMemberCreator member="@member" onAddCallback="@onMemberAdd" />
                 </div>
             }
         </div>
@@ -37,6 +37,7 @@
     private FamilyMember[] members;
     private MenuItem[] leftMenuItem;
     private TaskModel[] tasksToShow;
+    private FamilyMember member = new FamilyMember();
     private TaskModel[] allTasks;
     private bool isLoaded;
     private bool showLister;
@@ -44,12 +45,12 @@
     protected override async Task OnInitializedAsync () {
         members = await Http.GetFromJsonAsync<FamilyMember[]> ("sample-data/family-members.json");
         allTasks = await Http.GetFromJsonAsync<TaskModel[]> ("sample-data/tasks.json");
-       
+
         leftMenuItem = new MenuItem[members.Length + 1];
         leftMenuItem[0] = new MenuItem {
-                label = "All Tasks",
-                referenceId = Guid.Empty,
-                isActive = true
+            label = "All Tasks",
+            referenceId = Guid.Empty,
+            isActive = true
         };
         leftMenuItem[0].ClickCallback += showAllTasks;
         for (int i = 1; i < members.Length + 1; i++)
